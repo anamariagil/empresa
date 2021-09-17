@@ -5,6 +5,7 @@
  */
 package empresa;
 
+import empleado.Empleado;
 import java.util.Scanner;
 
 /**
@@ -12,13 +13,13 @@ import java.util.Scanner;
  * @author 503
  */
 public class Empresa {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
         int opcion;
+        int id;
+        int contador=0;
+        int buscar;
+        Empleado[] empleados= new Empleado[10];
         do{
             System.out.println("Bienvenido");
             System.out.println("*****************");
@@ -28,6 +29,55 @@ public class Empresa {
             System.out.println("4.Salir \n");
             System.out.println("Digite una opción");
             opcion= entrada.nextInt();
+            System.out.println("");
+            switch(opcion){
+                case 1:
+                    empleados[contador]=new Empleado();
+                    System.out.println("Ingrese el id del empleado");
+                    empleados[contador].setId(entrada.nextInt());
+                    System.out.println("");
+                    System.out.println("Ingrese el nombre del empleado");
+                    empleados[contador].setNombre(entrada.next());
+                    System.out.println("");
+                    System.out.println("Ingrese el cargo del empleado");
+                    empleados[contador].setCargo(entrada.next());
+                    System.out.println("");
+                    System.out.println("Ingrese el salario del empleado");
+                    empleados[contador].setSalario(entrada.nextInt());
+                    System.out.println("");
+                    System.out.println("Ingrese el telefono del empleado");
+                    empleados[contador].setTelefono(entrada.next());
+                    System.out.println("");
+                    contador++;
+                    break;
+                case 2:
+                    System.out.println("Ingrese el id del empleado");
+                    buscar= entrada.nextInt();
+                    if (buscar==empleados[contador].getId()){
+                        System.out.println("Su nombre es " +empleados[contador].getNombre());
+                        System.out.println("Su cargo es " +empleados[contador].getCargo());
+                        System.out.println("Su salario es " +empleados[contador].getSalario());
+                        System.out.println("Su telefono es " +empleados[contador].getTelefono());
+                    }
+                    break;
+                case 3:
+                    for (int i=0; i<contador; i++){
+                        System.out.println("Empleado " +empleados[i].getId());
+                        System.out.println("El nombre es " +empleados[i].getNombre());
+                        System.out.println("El cargo es " +empleados[i].getCargo());
+                        System.out.println("El salario es " +empleados[i].getSalario());
+                        System.out.println("El telefono es " +empleados[i].getTelefono());
+                        System.out.println("");
+                    }
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    break;
+            }
         }while(opcion!=4);
+        
     }
 }
